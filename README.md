@@ -1,52 +1,28 @@
-WebPrint Tray Icon
-==================
+# Calvin PaperCut
+A python command line interface for printing to PaperCut enabled printers. **Warning:** this script has not been extensively tested and will cost you money.
 
-WebPrint Tray Icon is a system tray app to simplify printing at Calvin College.  
-It creates a 'webprint' folder containing a folder for each printer you want to us.
-WebPrint will watch these folders and print any new files.
+## Installation
+Clone the repo.
 
-WARNING: Files in the 'webprint' folder will be deleted after printing.
+Install the requirements with `pip install -r requirements.txt`
 
-Download
---------
-A Windows installer can be downloaded from Source Forge:  
-https://sourceforge.net/projects/webprinttrayico/files/latest/download  
-At this time, OSX and Linux are not supported.  
-Setup
------
-#####1. Download And Install
-Download and install the WebPrint installer from the link on this page.  
-After running the installer, you must sign in and select the printers you want to use.  
-#####2. Sign In
-After running the installer, a printer icon will appear in the system tray.  
-Right click the icon, and select 'Settings' from the menu.  
-In the settings window, click on the 'Account' tab.  
-Enter your username and password, and click 'sign in'.  
-#####3. Select Printers
-In the settings window, click on the 'Printers' tab.  
-Select the printers you would like to use, and click 'apply' to save changes.  
-This will create a folder for that printer in your 'webprint' folder.  
-By default, your webprint folder is in 'My Documents'. If you want to move it, you can do so in the 'General' tab.  
-How To Print
-------------
-Print your document normally, but select 'Microsoft XPS Image Writer' as your printer.  
-This will print to a file which can be saved in a folder which WebPrint is watching.  
-When prompted, navigate to the 'webprint' folder and save the file inside the folder corresponding to the printer your wnat to use.  
-WebPrint will detect the new file and notify you that it is being sent to the printer.
+For global usage add an alias to your bash config: 	`alias papercut='python /path/to/repo/Calvin-Papercut/cli.py'`
 
-WARNING: Files in the 'webprint' folder will be deleted after printing.
+To save your username, add a file `~/.papercut` with the contents:
 
-Legal
------
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+	[papercut]
+	username: your_user_name
+	
+## Usage
+List all arguments with `-h`
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
+Print files with `--print FILENAME` or `-p FILENAME`. You will be prompted for a printer. You can specify the printer name with the optional argument `--printer`.
 
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>.
+List all printers with `--list` or `-l`.
+
+View your print balance with `--balance` or `-b`
+
+Mess with your password options with `--password-options` or `-o`:
+
+* `-o save` will save your password to your system keyring
+* `-o prompt` will force the script to prompt for your password. This could be useful if you have to change your PaperCut password and the old one is still saved in the keyring.
